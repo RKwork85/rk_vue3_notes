@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{ add(1,2)}}</div>
+        <div>{{ add(1,2)}}</div>
+
+        <div>{{ sub}}</div>
+        <div>{{ sub}}</div>
+
+        <input type="text" v-model="a">
+
+
+
+        <div>
+            <!-- 购物车商品列表 -->
+            <h2>购物车</h2>
+            <ul>
+              <li v-for="item in cartItems" :key="item.id">
+                {{ item.name }} - 单价: {{ item.price }}，数量: 
+                <input type="number" v-model.number="item.quantity" min="1" />
+                小计: {{ item.price * item.quantity }}
+              </li>
+            </ul>
+            <p>购物车总价: {{ totalPrice }}</p>
+        
+            <!-- 动态显示全名 -->
+            <h2>用户信息</h2>
+            <input v-model="firstName" placeholder="First Name" />
+            <input v-model="lastName" placeholder="Last Name" />
+            <p>全名: {{ fullName }}</p>
+        
+            <!-- 过滤商品列表 -->
+            <h2>商品列表</h2>
+            <input v-model="searchTerm" placeholder="搜索商品" />
+            <ul>
+              <li v-for="product in filteredProducts" :key="product.id">
+                {{ product.name }} - 价格: {{ product.price }}
+              </li>
+            </ul>
+          </div>
+
+
+
+    </div>
+  <script type="module">
+    import {createApp, reactive, computed, ref} from './vue.esm-browser.js'
+
+    createApp({
+        setup(){
+            const a = ref(10)
+            const b = ref(8)
+
+            const add = (a, b) =>{
+                console.log('add')
+                return  a+b
+            }
+
+            const sub = computed(() =>{
+                console.log('sub')
+                return  a.value-b.value
+            })
+
+
+            // 购物车数据
+const cartItems = ref([
+  { id: 1, name: '苹果', price: 10, quantity: 2 },
+  { id: 2, name: '香蕉', price: 5, quantity: 3 },
+  { id: 3, name: '橙子', price: 8, quantity: 1 }
+]);
+
+// 计算购物车总价
+const totalPrice = computed(() =>{
+console.log(' 计算购物车总价')
+return cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0)
+
+}
+);
+
+// 用户姓名数据
+const firstName = ref('');
+const lastName = ref('');
+
+// 计算全名
+const fullName = computed(() => `${firstName.value} ${lastName.value}`);
+
+// 商品列表数据
+const products = ref([
+  { id: 1, name: '商品A', price: 100 },
+  { id: 2, name: '商品B', price: 200 },
+  { id: 3, name: '商品C', price: 150 }
+]);
+
+// 搜索关键词
+const searchTerm = ref('');
+
+// 过滤商品列表
+const filteredProducts = computed(() =>
+  products.value.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.value.toLowerCase())
+  )
+);
+            return{
+                add,
+                sub,
+                a,
+                b,
+                cartItems,
+                totalPrice,
+                firstName,
+                lastName,
+                fullName,
+                products,
+                filteredProducts,
+                searchTerm
+            }
+        }
+    }).mount("#app")
+  </script>
+    
+</body>
+</html>
+<!--计算属性-->

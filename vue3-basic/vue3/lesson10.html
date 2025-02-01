@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        你的爱好是：
+        <select name="hobby" v-model="hobby">
+            <option value="">请输入</option>
+            <option value="吃饭">吃饭</option>
+            <option value="睡觉">睡觉</option>
+            <option value="打豆豆">打豆豆</option>
+
+        </select>
+        <hr>
+
+         年:  <select name="year" v-model="data.year">
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+
+              </select>
+         月:  <select name="month" v-model="data.month">
+                <option value="12">12</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+
+             </select>
+
+    </div>
+    <script type="module">
+        import {createApp, ref, reactive, watch} from './vue.esm-browser.js'
+
+
+        createApp({
+            setup(){
+                const hobby = ref('')
+                const data = reactive({
+                    year:'2024',
+                    month:'1'
+                })
+                // 监听字符串数据
+                watch(hobby, (newValue, oldValue) =>{
+                    console.log(`oldvalue:${oldValue}, newvalue:${newValue}`)
+                })
+                // 监听对象数据
+                watch(data, (newValue, oldValue) =>{
+                    console.log(oldValue, newValue)
+                    if (newValue.year == 2025){
+                        console.log(data.year)
+                    }
+                })
+                // 监听对象的某个属性
+                watch(() => data.month, (newValue, oldValue) =>{
+                    console.log(oldValue, newValue)
+                    if (newValue == 2){
+                        console.log(newValue)
+                    }
+                })
+
+                return {
+                    hobby,
+                    data
+                }
+            }
+
+        }).mount("#app")
+    </script>
+</body>
+</html>
+
+<!-- 监听器 -->

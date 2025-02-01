@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{data.name}}
+        <hr>
+        v-text: <div v-text="data.name"></div>
+        <hr>
+        data.html: <div v-html="data.html"></div>
+    </div>
+  <script type="module">
+    import {createApp, reactive} from './vue.esm-browser.js'
+
+    createApp({
+        setup(){
+            const data = reactive({
+                name:"muzihhhhh",
+                html:"<p style='background-color:yellowgreen;'>html</p>"
+            })
+            return{
+                data
+            }
+        }
+    }).mount("#app")
+  </script>
+    
+</body>
+</html>
+<!-- v-text v-html -->

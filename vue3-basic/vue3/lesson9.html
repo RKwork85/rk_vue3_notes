@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Computed vs Methods</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用计算属性 -->
+        <h2>使用计算属性</h2>
+        <ul>
+            <li v-for="item in cartItems" :key="item.id">
+                {{ item.name }} - 单价: {{ item.price }}，数量: 
+                <input type="number" v-model.number="item.quantity" min="1" />
+                小计: {{ item.price * item.quantity }}
+            </li>
+        </ul>
+        <p>购物车总价 (计算属性): {{ totalPrice }}</p>
+
+        <!-- 使用普通方法 -->
+        <h2>使用普通方法</h2>
+        <ul>
+            <li v-for="item in cartItems" :key="item.id">
+                {{ item.name }} - 单价: {{ item.price }}，数量: 
+                <input type="number" v-model.number="item.quantity" min="1" />
+                小计: {{ item.price * item.quantity }}
+            </li>
+        </ul>
+        <p>购物车总价 (普通方法): {{ calculateTotalPrice() }}</p>
+    </div>
+    <script type="module">
+        import { createApp, reactive, computed, ref } from './vue.esm-browser.js'
+
+        createApp({
+            setup(){
+                // 购物车数据
+                const cartItems = ref([
+                    { id: 1, name: '苹果', price: 10, quantity: 2 },
+                    { id: 2, name: '香蕉', price: 5, quantity: 3 },
+                    { id: 3, name: '橙子', price: 8, quantity: 1 }
+                ]);
+
+                // 使用计算属性计算购物车总价
+                const totalPrice = computed(() => {
+                    console.log('计算属性 - 计算总价');
+                    return cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0);
+                });
+
+                // 使用普通方法计算购物车总价
+                const calculateTotalPrice = () => {
+                    console.log('普通方法 - 计算总价');
+                    return cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0);
+                };
+
+                return {
+                    cartItems,
+                    totalPrice,
+                    calculateTotalPrice
+                };
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>
+<!-- 计算属性 vs 普通方法 -->
