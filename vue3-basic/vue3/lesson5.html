@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        数据为：{{data}}
+        <h3 v-for="(value,index) in data.season">
+            第{{index + 1 }} 个季节为：{{value}}
+        </h3>
+
+        muzi 的个人信息：
+        <p v-for="(value, key, index) in data.muzi">
+           第{{index+1}} 信息： {{key}}:{{value}} 
+        </p>
+
+        <!-- 
+        <template v-for="(value, index )in data.hobby ":key="index">
+            <li>
+                第{{index+1}} 信息：{{value}} 
+            </li>
+        </template> -->
+        限定条件遍历
+        <template v-for="(value, index) in data.hobby">
+            <li v-if="index ==1">
+                {{value}}
+                <p>
+                    <u  :title="value.name">
+                        姓名：{{value.name}}
+                        年龄：{{value.age}}
+                        爱好：{{value.hobby}}
+                    </u>
+                 </p>
+            </li>
+        </template>
+    </div>
+
+
+    <script type="module">
+        import {createApp, reactive} from './vue.esm-browser.js'
+        
+        createApp({
+            setup(){
+                const data = reactive({
+                    season : ['春天', '秋天', '夏天', '冬天'],
+                    muzi:{'name':'muzi', 'age': 18, 'gender':'male'},
+                    hobby:[
+                        {'name':'muzi',"age":18 , 'hobby':"eating"},
+                        {'name':'lizi', "age": 3, "hobby":"sleeping"}
+                    ]
+
+                }
+                )
+
+                return{
+                    data
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
+
+<!-- v-for -->
