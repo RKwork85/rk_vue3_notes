@@ -7,6 +7,54 @@
     <title>HTML</title>
 </head>
 <body>
+    <script>
+        let arr1 = [1,2,"hhhh", 'llll']
 
+        // 数组尾部增加
+        arr1.push("尾部增加的元素")
+        // 数组头部增加
+        arr1.unshift("头部增加的元素")
+        // 去除头部的元素
+        arr1.shift()
+        // 去除尾部的元素
+        arr1.pop()
+
+        console.log("经过一系列操作，数组不变", arr1)
+
+        let arr2 = [1,2,3,4,5]
+        // 过滤条件
+        console.log("过滤大于2的元素", arr2.filter((value) =>{
+            return value>2
+        }))
+
+        // 分割
+
+        console.log("splice 函数, 第一个参数，起始位置，左闭，第二个参数，返回数组的长度；原有的数组会改变，变成切剩下的，", arr2.splice(2, 2))
+        
+        // 颠倒顺序
+
+        console.log("reverse 颠倒顺序",arr2.reverse())
+        // 合并新数组
+
+        let arr3 = arr2.concat(arr1)
+        console.log("concat 链接新数组", arr3)
+
+        // 返回数组中的数字
+        console.log(arr3.filter((vlaue) => !vlaue.length ))
+
+
+        
+        for(let vlaue of arr1){
+            console.log("值为", vlaue)
+        }
+
+        arr1.forEach((value, index) =>{
+            console.log("第", index , "为", value)
+        })
+
+    </script>
 </body>
 </html>
+
+
+<!-- 数组内容 -->

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{status}}<hr>
+
+        <button @click="toggleStatus">切换状态</button>
+        <div v-show="status">
+            这是一个显示的句子
+        </div>
+        
+        <div v-if="status">
+            这是一个v-if控制的显示或隐藏的按钮
+        </div>
+
+        您的网站是一个<h1 v-if="userNumber<50"> 菜鸟网站</h1>
+        <h1 v-else-if="userNumber>=50 && userNumber<200">还可以网站</h1>
+        <h1 v-else>优秀网站</h1>
+    </div>
+    <script type="module">
+        import {createApp, reactive, ref} from './vue.esm-browser.js'
+
+        createApp({
+            setup(){
+                let status = ref(false)
+                let userNumber = ref(200)
+
+                const toggleStatus = () =>{
+                    status.value = !status.value
+                }
+                return{
+                    status,
+                    toggleStatus,
+                    userNumber
+                }
+            }
+        }).mount('#app')
+    </script>
+    
+</body>
+</html>

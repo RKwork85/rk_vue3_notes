@@ -7,6 +7,45 @@
     <title>HTML</title>
 </head>
 <body>
+    <script>
+        let set1 = new Set([1,2,3,4,5])
+        // for of
 
+        for (let value of set1){
+            console.log("for ... of ", value)
+        }
+        // forEach
+        set1.forEach((value, index) => {
+            console.log("forEach 第", index,":" , value)
+            
+        })
+
+        // 数组和集合转化
+        console.log("初始的集合为：", set1)
+        arr1 = [...set1]
+        console.log("转化后的数组arr1为：", arr1)
+        arr2 = Array.from(arr1)
+        console.log("转化后的数组arr2为：", arr2)
+
+        // 集合增加
+        set1.add("apple")
+        console.log("增加后的set1", set1)
+        // 集合减少
+        set1.delete(3)
+        console.log("减少后的set1",set1)
+        // has
+        console.log("是否存在某个元素", set1.has("apple"))
+
+        // 数组转化为集合
+        arr3 =[1,21,12,2,2,1,12]
+        set2 = new Set(arr3)
+        console.log("数组转换为集合", set2, "集合的大小为：", set2.size)
+
+
+
+
+    </script>
 </body>
 </html>
+
+<!-- 集合 -->

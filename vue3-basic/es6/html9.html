@@ -7,6 +7,27 @@
     <title>HTML</title>
 </head>
 <body>
+    <script>
+        const [a, ...b] = [1,2,3,4,5]
+        console.log(a,b)
+
+        
+    let [x2, y2 = 200] = [100] //默认值
+    console.log("x2:", x2, "y2:", y2)
+    
+    const muzi = {
+        name :'muzi',
+        age: '18'
+    }
+    let {name, ...other} = muzi
+    console.log(other)
+
+       //重命名
+       let { name: userName, age, web='www.muzi.com' } = muzi
+    console.log("userName:", userName, "age:", age, "web:", web)
+    </script>
 
 </body>
 </html>
+
+<!-- 解构 -->

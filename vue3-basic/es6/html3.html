@@ -7,6 +7,47 @@
     <title>HTML</title>
 </head>
 <body>
+    <script>
+        let people1 = new Map()
+
+        people1.set("name", 'muzi')
+        console.log(people1, people1.has("age"))
+        people1.set("age", 18)
+
+
+        // Kimi
+        const myMap = new Map([
+            ['key1', 'value1'],
+            ['key2', 'value2'],
+            ['key3', 'value3']
+            ]);
+
+        // 使用 for...of 循环
+        for (const [key, value] of myMap.entries()) {
+        console.log(`Key: ${key}, Value: ${value}`);
+        }
+        // for...of 循环和解构赋值
+        for (const entry of myMap.entries()) {
+        const [key, value] = entry;
+        console.log(`Key: ${key}, Value: ${value}`);
+        }
+         //使用forEach方法遍历Map集合的键值对
+        myMap.forEach((value, key) => {
+        console.log("forEach", key, value)
+    })
+
+        // 将 Map 转换为数组
+        const entriesArray = Array.from(myMap.entries());
+        console.log(" 将 Map 转换为数组",entriesArray);  
+
+        // 将 Map keys 转换为数组
+        const keysArray = Array.from(myMap.keys());
+        console.log("将 Map keys转换为数组", keysArray);  
+        
+    </script>
 
 </body>
 </html>
+
+
+<!-- Map -->

@@ -7,6 +7,46 @@
     <title>HTML</title>
 </head>
 <body>
+    <script>
+        class Person{
+            name
+            age
+            #found
 
+            constructor(name, age, found){
+                this.age =age
+                this.name=name
+                this.#found = found
+            }
+            // 一旦设置设置了私有属性，设置get 方法
+            get found(){
+                return this.#found
+            }
+            // 设计修改方法 set
+            set found(value){
+                this.#found = value
+            }
+
+            Info(){
+            console.log(this.name, this.age, this.found)
+        }
+        
+        }
+
+        let muzi= new  Person('mzui', 18, '18w')
+        muzi.Info()
+
+        // 我需要修改这个资金额度
+        muzi.found = '20w'
+        console.log(muzi.found)
+
+
+    </script>
 </body>
 </html>
+
+<!-- 类 私有属性和公有属性
+    是有意义的，但是需要配上权限管理才有意义
+    不同的人对属性操作的权限不一样才对
+
+-->

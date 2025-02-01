@@ -7,6 +7,73 @@
     <title>HTML</title>
 </head>
 <body>
+    <script>
+        let muzi ={
+            "name":"muzi",
+            "age":18, 
+            "gender": "male"
+        }
 
+        console.log(`muzi的年龄是${muzi.age} 性别是${muzi['gender']}`)
+        
+        // 添加新的属性
+        muzi['head'] = 'hhhh'
+        muzi.head = 'lll'
+        console.log(muzi)
+
+        // 查询属性是否存在
+        let unsure = 'head' in muzi
+        console.log(unsure)
+
+        // 删除属性
+        delete muzi.head
+        console.log(muzi)
+
+        // 获取对象的属性
+
+        let key_attribute = Object.keys(muzi)
+        console.log("muzi的属性值为",key_attribute)
+        let values_attribute = Object.values(muzi)
+        console.log("muzi的属性值为",values_attribute)
+
+        let entries_attribute = Object.entries(muzi)
+        console.log("muzi的属性值为",entries_attribute)
+        
+        // for of
+
+        for (let [key, vlaue] of Object.entries(muzi)){
+            console.log(`key:${key}, value:${vlaue}`)
+        }
+
+        //  forEach
+        Object.keys(muzi).forEach((value, index) =>{
+            console.log(`index:${index}, value:${value}`)
+        })
+
+        //使用for...in循环遍历对象 
+        //for...of 用于遍历可迭代对象[如数组、Set、Map、字符串等]
+        //for...in 用于遍历对象的可枚举属性
+        for (let key in muzi) {
+            console.log("for...in", key, muzi[key])
+        }
+
+        for (let key of Object.keys(muzi)) {
+            console.log("for...of", key, muzi[key])
+        }
+
+        //  转换
+        muziArray = Object.entries(muzi)
+        muziMap = new Map(muziArray)
+        console.log('muziArray:',muziArray,"muziMap:", muziMap)
+        
+        //  清空对象
+        muzi = {} 
+        console.log(`对象已清空，${Object.keys(muzi).length}`)
+
+
+
+    </script>
 </body>
 </html>
+
+<!-- 对象 -->

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    .muzihhh{
+        color: greenyellow;
+    }
+</style>
+    <div id="app">
+        {{muzi.name}}
+
+        <div>
+            <input  :value="muzi.name">
+            <img :src="muzi.jpgPath">
+
+        </div>
+        <div :class="muzi.class ">我的年龄是:{{muzi.age}}</div>
+        <div :class="{ [muzi.class]: muzi.classStatus }">我的年龄是:{{ muzi.age }}</div>
+    </div>
+    <script type="module">
+        import {createApp, ref, reactive} from './vue.esm-browser.js'
+
+        createApp({
+            setup(){
+                const muzi =reactive({
+                    name:"muzi",
+                    age:"18",
+                    info:"a handsome boy",
+                    jpgPath:"./lesson4.png",
+                    class:"muzihhh",
+                    classStatus:false
+                })
+
+                return {
+                    muzi
+                }
+            }
+        }).mount("#app")
+    </script>
+    
+</body>
+</html>

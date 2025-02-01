@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="app">
+        {{msg}}
+        <h3>{{web.title}}</h3>
+        <h3>{{web.url}}</h3>
+        <h3>用户数量：{{web.number}}</h3>
+        {{muzi}}
+        <h3>{{number}}</h3>
+        <button v-on:click="edit">点击事件</button>
+        <button @click="add">数字增加</button>
+        <button @click="addPlus">数字增加+</button>
+        增加用户数量:<input type="text"  @keyup.enter="useradd(10,20)"> 
+
+    </div>
+    <script type="module">
+    import {createApp, ref,reactive} from './vue.esm-browser.js'
+    createApp({
+            setup(){
+                const web =ref({
+                    title:'muzihhh',
+                    url:'www.muzihhh.com',
+                    number:10
+                })
+                const webArry =ref([1,2,3,4,5])
+                const number = ref(2)
+                const muzi = ref('hhh')
+                
+
+                function edit(){
+                    muzi.value = 'lll'
+                }
+                function add(){
+                    number.value += 1
+                }
+                const addPlus = () =>{
+                   web.value.number += 1
+                //     webArry.value[2] =333
+                //    console.log(webArry.value[2])
+                    console.log(web.value)
+
+                }
+
+                const useradd = (a,b) => web.value.number += a+b
+
+
+                return {msg:"success",web, muzi, edit, add, number, addPlus, useradd}
+            }
+        }).mount('#app')
+    </script>
+    
+</body>
+</html>

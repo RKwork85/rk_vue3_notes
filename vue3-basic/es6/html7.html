@@ -7,6 +7,42 @@
     <title>HTML</title>
 </head>
 <body>
+    <script>
+        class Dad{
+            name
+            gender
 
+            constructor(name, gender){
+                this.name = name
+                this.gender = gender
+
+            }
+
+            work(){
+                console.log(this.name, "正在工作")
+            }
+        }
+
+        class Son extends Dad{
+            age
+            constructor(name, gender, age){
+                
+                super(name, gender)
+
+                this.age = age
+            }
+            sleep(){
+                console.log(`儿子${this.name}, 正在睡觉`)
+            }
+        }
+
+        muzi = new Son("muzi", "male", 18)
+        muzi.work()
+        muzi.sleep()
+    </script>
 </body>
 </html>
+
+
+
+<!-- 类的继承 -->
