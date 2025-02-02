@@ -1,20 +1,26 @@
 <script setup>
-  import Header from './components/header.vue';
-  import {ref} from 'vue'
-  const userNumebr = ref(0)
-  const receiveData = (value)=>{
-    console.log(value)
-  }
 
-  const userAdd = (value) =>{
-    console.log('接收来的数据为:',value)
-    userNumebr.value +=value
+  import Header from './components/header.vue'
+  import {provide, ref, reactive} from 'vue'
+
+  const muzi =reactive({
+    "name": 'muzihhh',
+    "age": 18
+  })
+  const grade = ref(88)
+  const gradeAdd = () =>{
+    grade.value += 1
   }
+  provide("provideMuzi", muzi)
+  provide("provideGrade", grade)
+  provide('provideGradeAdd', gradeAdd)
 </script>
 
 <template>
-  <Header  @emitsData="receiveData" @emitsUserAdd=" userAdd"/>
-  {{ userNumebr }}
+  <h1>这里是父组件内容</h1>
+   祖父的成绩{{ grade }}
+
+  <Header />
 </template>
 <style scoped>
 

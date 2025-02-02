@@ -1,16 +1,14 @@
 <script setup>
+import Nav from './nav.vue'
+import { inject } from 'vue';
 
-    const  emits= defineEmits(['emitsData',"emitsUserAdd"])
-    emits('emitsData', {name:'muzi', age:18})
-
-    const add = () =>{
-        emits("emitsUserAdd", 10)
-    }
-
+    const data = inject("provideMuzi")
+    console.log(data)
 </script>
     
 <template>
-    <button @click="add">增加年龄</button>
+    <h3>这里是header的内容</h3>
+    <Nav />
 </template>
 
 <style scoped>
