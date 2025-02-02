@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="data.notes">
+        <button @click="add">添加笔记</button>
+
+        <ul>
+            <li v-for="(value, index) in data.notesList">
+                {{value}} <button @click="del(index)">删除</button>
+            </li>
+        </ul>
+
+        {{data.notesList.length}} <button @click="clear">清空</button>
+    </div>
+   <script type="module">
+    import {createApp, reactive} from '../../vue.esm-browser.js'
+
+    createApp({
+        setup(){
+            const data=reactive({
+                notes: '今天不开心',
+                notesList:[]
+            })
+            const add = ()=>{
+                data.notesList.push(data.notes)
+                console.log(data.notesList)
+            }
+            const del = (index) =>{
+                data.value.notesList.splice(index, 1)
+            }
+            const clear = () =>{
+                data.notesList = []
+            }
+            return {
+                data,
+                add,
+                del,
+                clear
+            }
+        }
+        
+    }).mount("#app")
+   </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <img :src=`jpg${number}.jpg` style="width: 600px; height: 400px;" alt="出现错误">
+        <hr>
+        <button @click="next">下一张</button>
+        <button @click="next">上一张</button>
+        <li v-for="value in 3" @click="jump(value)">
+            {{value}}
+        </li>
+
+    </div>
+    <script type="module">
+        import {createApp, ref,computed} from '../../vue.esm-browser.js'
+
+        createApp({
+            setup(){
+                let number = ref(1)
+
+
+                const next = ()=>{
+                    number.value = number.value +1
+                    if(number.value ==4){
+                        number.value =1
+                    }
+                }
+                const prev = ()=>{
+                    number.value = number.value -1
+                    if(number.value ==0){
+                        number.value =1
+                }
+            }
+                const jump = (value)=>{
+                    number.value = value
+                }
+                return {
+                    next,
+                    number,
+                    jump
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
