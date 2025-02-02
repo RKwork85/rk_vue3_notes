@@ -1,28 +1,23 @@
 <script setup>
   import Header from './components/header.vue';
-  import Footer from './components/footer.vue';
-  import {reactive} from 'vue'
-  const propsMuzi = reactive({
-    name:'muzi',
-    age:18
-  })
-  const addAge = () => {
-    propsMuzi.age++
-    console.log(propsMuzi.age)
-}
+  import {ref} from 'vue'
+  const userNumebr = ref(0)
+  const receiveData = (value)=>{
+    console.log(value)
+  }
+
+  const userAdd = (value) =>{
+    console.log('接收来的数据为:',value)
+    userNumebr.value +=value
+  }
 </script>
 
 <template>
-  <Header propsName="muzi"  propsAge="18"/>
-  <Footer v-bind="propsMuzi"/>
-
-  <button @click="addAge">增加年龄</button>
+  <Header  @emitsData="receiveData" @emitsUserAdd=" userAdd"/>
+  {{ userNumebr }}
 </template>
-
 <style scoped>
 
 </style>
 
-<!-- 父传子：header 数组 -->
-<!-- 父传子：footer 对象 -->
- <!-- 实现父组件控制传递给子组件的数据， 在子组件页面上的增加 -->
+<!-- 子组件中有一个按钮，点击这个按钮，可以控制要增加的数据传递给父组件，父组件得到这个数据，对数据进行处理，实现父组件数据修改 -->

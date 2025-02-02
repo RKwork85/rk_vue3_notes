@@ -1,10 +1,16 @@
 <script setup>
-    const muzi = defineProps(["propsName", "propsAge"])
-    console.log(muzi)
+
+    const  emits= defineEmits(['emitsData',"emitsUserAdd"])
+    emits('emitsData', {name:'muzi', age:18})
+
+    const add = () =>{
+        emits("emitsUserAdd", 10)
+    }
+
 </script>
     
 <template>
-    <h3>Header</h3>
+    <button @click="add">增加年龄</button>
 </template>
 
 <style scoped>
